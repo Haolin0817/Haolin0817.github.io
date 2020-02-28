@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>hexo博客搭建——记录采坑大爆炸的艰难历程 ~ Hexo</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hexo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期五, 二月 28日 2020, 10:13 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.5k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      6 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>##<p align="center">hexo博客搭建（只发布到github）</p>
+<blockquote>
+<p>想说一下这篇博客完全是实战操作，无任何理论。搜索了很多博客，才把自己的博客软件hexo安装完成，就算是做一个笔记吧。<strong>（本篇只讲述了通过hexo搭建博客传到github中去，并更改主题的经历，并不包含域名和云服务器的故事）</strong></p>
+</blockquote>
+<h3 id="首先准备的材料"><a href="#首先准备的材料" class="headerlink" title="首先准备的材料"></a>首先准备的材料</h3><ul>
+<li>Git安装包</li>
+<li>Node.js安装包</li>
+<li>github账户</li>
+</ul>
+<p>接着讲一下这三个材料都怎么获取</p>
+<h4 id="1-Git安装包官方下载地址-https-cdn-npm-taobao-org-dist-git-for-windows-v2-25-0-windows-1-Git-2-25-0-64-bit-exe"><a href="#1-Git安装包官方下载地址-https-cdn-npm-taobao-org-dist-git-for-windows-v2-25-0-windows-1-Git-2-25-0-64-bit-exe" class="headerlink" title="1. Git安装包官方下载地址 https://cdn.npm.taobao.org/dist/git-for-windows/v2.25.0.windows.1/Git-2.25.0-64-bit.exe"></a>1. Git安装包官方下载地址 <a href="https://cdn.npm.taobao.org/dist/git-for-windows/v2.25.0.windows.1/Git-2.25.0-64-bit.exe" target="_blank" rel="noopener">https://cdn.npm.taobao.org/dist/git-for-windows/v2.25.0.windows.1/Git-2.25.0-64-bit.exe</a></h4><p>下载之后安装就可以了，我安装的时候在<strong>Adjusting your PATH environment下，勾选了Use Git from Git Bash only</strong>（默认是第二个选项，我选择了第一个），接下来全点next就可以了，直到安装完成。</p>
+<h4 id="2-Node-js安装包官方下载地址-https-nodejs-org-dist-v12-16-1-node-v12-16-1-x64-msi"><a href="#2-Node-js安装包官方下载地址-https-nodejs-org-dist-v12-16-1-node-v12-16-1-x64-msi" class="headerlink" title="2. Node.js安装包官方下载地址 https://nodejs.org/dist/v12.16.1/node-v12.16.1-x64.msi"></a>2. Node.js安装包官方下载地址 <a href="https://nodejs.org/dist/v12.16.1/node-v12.16.1-x64.msi" target="_blank" rel="noopener">https://nodejs.org/dist/v12.16.1/node-v12.16.1-x64.msi</a></h4><p>同样，下载之后安装，我的电脑安装之后不可以再进行安装了，如果安装过程中有任何问题，可以百度查询。</p>
+<h4 id="3-github账户"><a href="#3-github账户" class="headerlink" title="3. github账户"></a>3. github账户</h4><p>谷歌登录github官网，进行注册就可以了。这里有个坑被我踩到了，因为我在进入这个官网的过程中，实在是“挤”不进去，这个的解决办法是：***在自己电脑Windows/System32/dribers/etc目录中，找到hosts文件进入编辑，最下方输入<br># Github start<br>192.30.253.112 github.com<br>192.30.253.119 gist.github.com<br>151.101.100.133 assets-cdn.github.com<br>151.101.100.133 raw.githubusercontent.com<br>151.101.100.133 gist.githubusercontent.com<br>151.101.100.133 cloud.githubusercontent.com<br>151.101.100.133 camo.githubusercontent.com<br>151.101.100.133 avatars0.githubusercontent.com<br>151.101.100.133 avatars1.githubusercontent.com<br>151.101.100.133 avatars2.githubusercontent.com<br>151.101.100.133 avatars3.githubusercontent.com<br>151.101.100.133 avatars4.githubusercontent.com<br>151.101.100.133 avatars5.githubusercontent.com<br>151.101.100.133 avatars6.githubusercontent.com<br>151.101.100.133 avatars7.githubusercontent.com<br>151.101.100.133 avatars8.githubusercontent.com<br>192.30.253.113 github.com<br>192.30.253.113 github.com<br>192.30.253.118 gist.github.com<br>192.30.253.119 gist.github.com<br># Github end<br>就可以了，这里想说一下，最好用谷歌浏览器，因为我在许多地方发现，谷歌浏览器进入特别快。</p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><h4 id="1-首先在一个位置新建一个空文件夹，名字任意，点进去右键选择Git-Bash-Here（如果没有则是Git安装失败）"><a href="#1-首先在一个位置新建一个空文件夹，名字任意，点进去右键选择Git-Bash-Here（如果没有则是Git安装失败）" class="headerlink" title="1. 首先在一个位置新建一个空文件夹，名字任意，点进去右键选择Git Bash Here（如果没有则是Git安装失败）"></a>1. 首先在一个位置新建一个空文件夹，名字任意，点进去右键选择Git Bash Here（如果没有则是Git安装失败）</h4><h4 id="2-安装hexo的命令："><a href="#2-安装hexo的命令：" class="headerlink" title="2.安装hexo的命令："></a>2.安装hexo的命令：</h4><pre><code>npm install -g hexo-cli</code></pre><p>这一步会很慢很慢。。。再次弹出$ 就可能表示已经成功了，输入hexo -v进行检查，弹出这个就表示成功了</p>
+<pre><code>$ hexo -v
+hexo: 3.4.2
+hexo-cli: 1.0.4
+os: Windows_NT 6.1.7601 win32 x64
+http_parser: 2.7.0
+node: 8.9.1
+v8: 6.1.534.47
+uv: 1.15.0
+zlib: 1.2.11
+ares: 1.10.1-DEV
+modules: 57
+nghttp2: 1.25.0
+openssl: 1.0.2m
+icu: 59.1
+unicode: 9.0
+cldr: 31.0.1
+tz: 2017b</code></pre><p>继续输入hexo init来初始化hexo，注意，这个是分四次输入的</p>
+<pre><code>hexo init
+hexo install
+npm install hexo-deployer-git --save</code></pre><p>初始化之后，会有一个默认主题和文章，也就是我们的博客</p>
+<pre><code>hexo server //可以简写成hexo s(这是注释)</code></pre><p>这个时候就可以通过浏览器浏览本机端口号4000的默认博客啦！(这里有些细节不一样是因为我后改了一些)。Ctrl+C可以结束</p>
+<p><img src="./EYY99VLIJ56JY1_5Z@F5O.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<p>我们在先暂时不更改默认博客文章的前提下，把本地文章发布到网上，让更多的人看到，这个时候就需要Github账户了<br>下面安装图片提示创建库<br>之前推荐谷歌浏览器，有一部分因为翻译成简体中文比较方便<br><img src="./EQ%60BYZT~51R%7D%7B%60@HFIARG.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p>接着创建新的库名<br><img src="./POSM%5D%7DWZ%7DT7X21PH7~7_5E.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p>这个地方注意，名称一定是你的github用户名.github.io，之前我因为打错一个字母，结果。。。坑炸了</p>
+<p><img src="./W37Y%7DR__%60_KB%5D5M74$H.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p>创建好了之后，如下图，库里是空的，复制箭头指向的地址<br><img src="./66G1%5D1K~6%5BLT9JC%7B7I166.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p>然后回到自己建的文件夹中找到_config.yml进入编辑，拉到最下边，改成下图所示，并保存</p>
+<pre><code>deploy:
+  type: git
+  repo: //刚才自己复制的地址粘贴到这里
+  branch: master</code></pre><p>然后再到Git Bash中输入hexo g 将本地的博客文章上传到github中去</p>
+<pre><code>hexo d</code></pre><p>等待完成后，浏览器输入<strong>你的githubID.github.io</strong>回车，就会看到上帝的微笑了^_^</p>
+<p>这样，就不止自己能看到了，别人输入上边的地址搜索，也能看到自己的博客。<strong>每当在本地修改一次，就重新部署上传一次</strong>，重新部署主题也是，和上边代码一样，但我一般都先清空缓存一次（分两次输入）</p>
+<pre><code>hexo clean
+hexo d</code></pre><h3 id="如何更换主题和发布文章"><a href="#如何更换主题和发布文章" class="headerlink" title="如何更换主题和发布文章"></a>如何更换主题和发布文章</h3><h4 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h4><p>hexo官网上有很多漂亮帅气的主题，每个主题也有部署方法和讲解，我举一个例子：<br>进入hexo官网之后，点击主题<br><img src="./%7DGWDEUB%7D~8ZO~PBVU5XL_6M.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p>之后选择一个自己喜欢的主题点进去<br><img src="./0BVIN8APMA%7DHF2SA8%5BZ0BJN.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p>里面就有详细的部署方法，比较常见的几步差不多就是</p>
+<ul>
+<li>下载资源，放到themes文件夹中</li>
+<li>将_config.yml文件中的theme后的默认主题landscape更换成新下载的主题</li>
+<li>hexo clean、hexo d清除缓存后发布</li>
+</ul>
+<p>当然，具体操作步骤还是参考主题发布者（官方）的说明书<br>更换完主题hexo clean和hexo s 在本地看一看，然后就可以hexo d发布到github中去了，主题也就随之更换</p>
+<h4 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h4><p>发布文章的话，就在博客文件夹中的sourse文件夹下的_posts下，创建.md文件（markdown语言的文件，可以百度搜索一下），目前没有创建任何文章的情况下，一定会只有一个hello-world.md的文档，可以把这个文档中的开头三行复制过来，把title改一下就行了。因为- - -这种格式会被收录到目录中去。在下边就可以大刀阔斧的编写自己行编写的博客了！编写好了之后保存，在GitBash中同上，hexo clean 和hexo d两条命令发布到github中去。具体markdown语言请参考网上学习资料或视频学习，自认为还是很简单的。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "hexo博客搭建——记录采坑大爆炸的艰难历程&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
