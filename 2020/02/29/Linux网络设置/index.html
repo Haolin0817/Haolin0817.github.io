@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="霖雨成思">
   <meta name="keywords" content="">
-  <title>Hello World ~ 霖雨成思的博客</title>
+  <title>Linux网络设置 ~ 霖雨成思的博客</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -121,7 +121,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期三, 二月 26日 2020, 10:01 晚上
+                  星期六, 二月 29日 2020, 1:50 下午
                 </p>
               
 
@@ -130,7 +130,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    75 字
+                    711 字
                   </span>&nbsp;
                 
 
@@ -138,7 +138,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      1 分钟
+                      2 分钟
                   </span>&nbsp;
                 
 
@@ -171,15 +171,28 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h2 id="Linux网络设置"><a href="#Linux网络设置" class="headerlink" title="Linux网络设置"></a><p align="center">Linux网络设置</h2><blockquote>
+<p>在视频课中学习的<strong><em>Linux</em></strong>知识做的笔记，包括修改IP、网关、DNS、子网掩码一些指令和方法。</p>
+<p align="right">记录人：霖雨成思
+</blockquote>
+<h4 id="（在终端命令中）切换root（超级管理员）命令：su"><a href="#（在终端命令中）切换root（超级管理员）命令：su" class="headerlink" title="（在终端命令中）切换root（超级管理员）命令：su"></a>（在终端命令中）切换root（超级管理员）命令：<code>su</code></h4><p><img src="./%7B1OTL6_8QLDKT3%5B103S35X.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<p>$表示是普通用户状态，#表示root状态</p>
+<h4 id="（在终端命令中）切换终端：Alt-F1-F2-F3-F4-F5-F6"><a href="#（在终端命令中）切换终端：Alt-F1-F2-F3-F4-F5-F6" class="headerlink" title="（在终端命令中）切换终端：Alt+F1/F2/F3/F4/F5/F6"></a>（在终端命令中）切换终端：Alt+F1/F2/F3/F4/F5/F6</h4><p>每个终端可以有不同的命令，最多有六个终端</p>
+<p>####（在终端命令中） 更改主机名：<code>hostname 修改的主机名（必须在root权限下）</code><br><img src="./96%7D%7D%5DN_FB0H2TZISI%7DWCNX.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<p>hostname单独写表示查看目前的主机名。注意这种更改只是<strong>临时生效，系统重启会恢复原来的主机名</strong>。</p>
+<p>####（在终端命令下）查看网卡命令：<code>ifconfig</code><br><img src="./LU@S81Q%602ZH0_JR3JJ4%7D0EX.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<p>eth0表示第一块以太网卡<br>lo表示虚拟网卡，一般用于测试</p>
+<p>####（在终端命令下）查看所有的网卡命令（包括不活动的网卡）：<code>ifconfig -a</code><br>####（在终端命令下）关闭网卡命令：<code>ifconfig 网卡名称 down （ifdown 网卡名称）</code><br>####（在终端命令下）启用网卡命令：<code>ifconfig 网卡名称 up（ifup 网卡名称）</code><br>####（在终端命令下）更改网卡IP地址命令：<code>ifconfig 网卡名称 更改的IP 网关地址 子网掩码（临时生效）</code><br>不写网关地址和子网掩码则不修改<br>####（在终端命令下）修改网卡的硬件地址【MAC地址（先关闭网卡）】命令：<code>ifconfig 网卡名称 hw ether 新地址（临时生效）</code><br>####（在终端命令下）查看本机的路由表命令：<code>route</code><br>####（在终端命令下）添加网关命令：<code>route add default gw 网关地址（删除则把add换成del）</code></p>
+<h4 id="永久修改主机名：修改-etc-sysconfig-network文件的HOSTNAME属性"><a href="#永久修改主机名：修改-etc-sysconfig-network文件的HOSTNAME属性" class="headerlink" title="永久修改主机名：修改/etc/sysconfig/network文件的HOSTNAME属性"></a>永久修改主机名：修改/etc/sysconfig/network文件的HOSTNAME属性</h4><h4 id="永久修改网卡、IP地址相关的配置文件：修改-etc-sysconfig-network-scripts-ifcfg-eth0-网卡名"><a href="#永久修改网卡、IP地址相关的配置文件：修改-etc-sysconfig-network-scripts-ifcfg-eth0-网卡名" class="headerlink" title="永久修改网卡、IP地址相关的配置文件：修改/etc/sysconfig/network-scripts/ifcfg-eth0(网卡名)"></a>永久修改网卡、IP地址相关的配置文件：修改/etc/sysconfig/network-scripts/ifcfg-eth0(网卡名)</h4><p><img src="./8@TB6KA1%7BNVBWB%60W%5D@X3%5B$E.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<p>其中ONBOOT为no的话<strong>网络开机默认不会自动连接</strong><br>BOOTPROTO默认是dhcp，意思是自动分配IP地址、子网掩码、网关这些信息，如果需要自己手动配置的话，我们需要把这个地方修改为null，然后在下边配置IP地址、子网掩码、网关这些信息<br>####DNS配置文件位置：/etc/resolv.conf<br><img src="./%7DOYB2S1YIA%60N~T5HNX7ZYJ.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<h4 id="这里需要注意的是，网络相关的配置文件修改之后，需要重启网络服务才能生效。当然，重启系统也是可以的"><a href="#这里需要注意的是，网络相关的配置文件修改之后，需要重启网络服务才能生效。当然，重启系统也是可以的" class="headerlink" title="这里需要注意的是，网络相关的配置文件修改之后，需要重启网络服务才能生效。当然，重启系统也是可以的"></a>这里需要注意的是，网络相关的配置文件修改之后，需要重启网络服务才能生效。当然，重启系统也是可以的</h4><h4 id="字符界面下修改网络配置也是可以的，使用setup命令，会启动一个配置向导"><a href="#字符界面下修改网络配置也是可以的，使用setup命令，会启动一个配置向导" class="headerlink" title="字符界面下修改网络配置也是可以的，使用setup命令，会启动一个配置向导"></a>字符界面下修改网络配置也是可以的，使用setup命令，会启动一个配置向导</h4><p><img src="./KQVBB46V336L6%5DE@3~@ZJ.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p><img src="./~%7BCFY_NX%7BO36WKDKFHGLAA2.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p><img src="./5Y1SQL@~F3~VK1%5D3JPYWF9.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<hr>
+<p><img src="./6%5DR3~%5D42%6032A~QRHJXR_3PC.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<h4 id="重启网络服务的命令：service-network-restart"><a href="#重启网络服务的命令：service-network-restart" class="headerlink" title="重启网络服务的命令：service network restart"></a>重启网络服务的命令：<code>service network restart</code></h4><p>这就是修改网络配置的一些常用方法，可以使用命令、配置文件和使用setup向导进行修改，其中setup向导方式和修改配置文件一样都是需要重启网络服务后永久生效的。</p>
 
             <hr>
           </div>
@@ -340,7 +353,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Hello World&nbsp;",
+        "Linux网络设置&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
