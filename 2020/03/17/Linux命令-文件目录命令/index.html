@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="霖雨成思">
   <meta name="keywords" content="">
-  <title>Linux网络设置 ~ 霖雨成思的博客</title>
+  <title>Linux命令-文件目录命令 ~ 霖雨成思的博客</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -171,8 +171,7 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p align="center">Linux命令-文件目录命令
-<p align="right">记录人：霖雨成思
+            <h2 id="Linux命令-文件目录命令"><a href="#Linux命令-文件目录命令" class="headerlink" title="Linux命令-文件目录命令"></a><p align="center">Linux命令-文件目录命令</h2><p align="right">记录人：霖雨成思
 
 <h3 id="命令基础"><a href="#命令基础" class="headerlink" title="命令基础"></a>命令基础</h3><p>Linux命令是严格区分大小写的，<br>登录后会显示一个Shell提示符，普通用户的提示符是$，root用户的提示符是#；<br>查看日期时间：date<br>队列：可以一次提交多条命令，命令之间用分号（;）隔开，Linux会依次执行<br>清屏：clear<br>强制换行：先输入反斜杠（\）再回车<br>输出：echo“ ”<br>查找文件：find / -size +50M（表示在根目录查找文件大小为大于50M的文件）<br>例如:find  -name、文件路径或类型(-type f 表示类型必须是普通文件)<br>例如:把文件找出来删掉:find / -size +100M -type f -exec rm -rf {} ; (-exec是执行的意思，找到某些符合条件的命令后，执行后面的命令    {};代表的是我们找到的这个对象  具体执行的命令是用rm把他删掉，然后用rf选项的作用是强制递归)<br>命令置于后台：命令后加一个&amp;</p>
 <h4 id="文件目录类命令"><a href="#文件目录类命令" class="headerlink" title="文件目录类命令"></a>文件目录类命令</h4><p>列出某个目录下文件的信息：ls （-l长格式输出）（-a显示隐藏文件）（–help获取该命令的帮助）（-R目录递归通过）（-ld目录和符号链接信息）</p>
@@ -371,7 +370,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Linux网络设置&nbsp;",
+        "Linux命令-文件目录命令&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
