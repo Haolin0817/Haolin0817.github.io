@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="霖雨成思">
+  <meta name="keywords" content="">
+  <title>Hibernate简单配置——实现增删改查 ~ 霖雨成思的博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>霖雨成思的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期六, 四月 4日 2020, 4:57 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.7k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      7 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p align="center">hibernate简单配置——实现增删改查
+</p><p align="right">记录人：霖雨成思
+> hibernate极大的简化了JDBC繁琐的编码
+> 对面向对象特性支持良好
+> 可移植性好
+
+</p><h3 id="hibernate的步骤使用"><a href="#hibernate的步骤使用" class="headerlink" title="hibernate的步骤使用"></a>hibernate的步骤使用</h3><ul>
+<li>现在并部署jar文件</li>
+<li>编写hibernate配置文件</li>
+<li>创建持久化类和映射文件</li>
+<li>使用hibernate API</li>
+</ul>
+<h3 id="部署jar文件"><a href="#部署jar文件" class="headerlink" title="部署jar文件"></a>部署jar文件</h3><h5 id="下载需要的jar文件"><a href="#下载需要的jar文件" class="headerlink" title="下载需要的jar文件"></a>下载需要的jar文件</h5><p>Hibernate的官方网站<a href="http://hibernate.org" target="_blank" rel="noopener">http://hibernate.org</a><br>托管网站<a href="https://sourceforge.net/projects/hibernate/files/" target="_blank" rel="noopener">https://sourceforge.net/projects/hibernate/files/</a><br>推荐下载：hibernate-distribution-3.6.10.Final-dist.zip</p>
+<h5 id="部署jar文件-1"><a href="#部署jar文件-1" class="headerlink" title="部署jar文件"></a>部署jar文件</h5><p>hibernate3.jar<br>hibernate需要的相关jar文件<br>mysql数据库驱动jar文件</p>
+<h3 id="编写hibernate配置文件-一般命名为hibernate-cfg-xml"><a href="#编写hibernate配置文件-一般命名为hibernate-cfg-xml" class="headerlink" title="编写hibernate配置文件(一般命名为hibernate.cfg.xml)"></a>编写hibernate配置文件(一般命名为hibernate.cfg.xml)</h3><pre><code class="xml">&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+    &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
+    &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+        &lt;!-- 数据库URL:localhost是本机的地址，3306是MySQL默认端口号，house是数据库名 --&gt;
+        &lt;property name=&quot;connection.url&quot;&gt;
+            jdbc:mysql://localhost:3306/house
+        &lt;/property&gt;
+        &lt;!--  数据库用户  --&gt;
+        &lt;property name=&quot;connection.username&quot;&gt;root&lt;/property&gt;
+        &lt;!--  数据库用户密码  --&gt;
+        &lt;property name=&quot;connection.password&quot;&gt;root&lt;/property&gt;
+        &lt;!-- 数据库JDBC驱动   --&gt;
+        &lt;property name=&quot;connection.driver_class&quot;&gt;
+            com.mysql.jdbc.Driver
+        &lt;/property&gt;
+        &lt;!--  每个数据库都有其对应的Dialect以匹配其平台特性   hibernate根据平台写SQL  --&gt;
+        &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+        &lt;!--  指定当前session范围和上下文   当提交以后session自动关闭--&gt;
+        &lt;property name=&quot;current_session_context_class&quot;&gt;thread&lt;/property&gt;
+        &lt;!--  是否将运行期生成的SQL输出到日志以供调试   --&gt;
+        &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
+        &lt;!--   是否格式化SQL   --&gt;
+        &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;        
+        &lt;!--    加载映射文件资源，资源包中间用/例如：dao/Users.hbm.xml   --&gt;
+        &lt;mapping resource=&quot;dao/Users.hbm.xml&quot;/&gt;
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;</code></pre>
+<blockquote>
+<p>我在向数据库输出中文内容时，出现乱码行为，在上边的配置文件中的数据库后边加上:</p>
+</blockquote>
+<pre><code>?Unicode=true&amp;amp;characterEncoding=GBK </code></pre><h3 id="创建持久化类和映射文件"><a href="#创建持久化类和映射文件" class="headerlink" title="创建持久化类和映射文件"></a>创建持久化类和映射文件</h3><pre><code class="java">public class Users {
+    //Users封装类
+    private int eid;
+    private String ename;
+    。。。省略getter和setter方法</code></pre>
+<p>···</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC 
+    &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+    &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;hibernate-mapping&gt;
+    &lt;!-- name是class的路径  table为表名（如果是关键字，用``括上  dynamic-update动态修改 --&gt;
+    &lt;!-- 映射文类和表，class中的class是实体类（持久化类）名字 --&gt;
+    &lt;class name=&quot;Users&quot; table=&quot;users&quot; dynamic-update=&quot;true&quot;&gt;
+        &lt;!-- name实体类属性名   column是表中的字段名  --&gt;
+        &lt;id name=&quot;eid&quot; type=&quot;java.lang.Integer&quot; column=&quot;id&quot; &gt;
+        &lt;!-- class自增，设置完后数据库可以不用设置自增 （主键生成策略）native为数据库中字段已设置自增--&gt;
+            &lt;generator class=&quot;assigned&quot;/&gt;
+        &lt;/id&gt;
+         &lt;!-- column数据库表里的列名 --&gt;
+        &lt;property name=&quot;ename&quot; type=&quot;java.lang.String&quot; column=&quot;name&quot;/&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;</code></pre>
+<p>注意：数据库使用主键生成器不要使用assigned</p>
+<h3 id="使用hibernate-API"><a href="#使用hibernate-API" class="headerlink" title="使用hibernate API"></a>使用hibernate API</h3><pre><code class="java">import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.junit.Test;
+
+public class Tests {
+    //开启事物
+    public static Session Trans(){
+        //读取xml文件
+                Configuration conf = new Configuration().configure();
+                //创建session工厂
+                SessionFactory sessionFactory = conf.buildSessionFactory();
+                //获取session
+                Session session = sessionFactory.getCurrentSession();
+                return session;
+    }
+
+
+
+
+    //添加方法
+    @Test
+    public void add(){
+        System.out.println(&quot;添加方法&quot;);
+        Session session = Tests.Trans();
+        //开启事物
+        Transaction trans = session.beginTransaction();
+        //实例化对象
+        Users u = new Users();//临时状态
+        u.setEid(3);
+        u.setEname(&quot;王五&quot;);
+        session.save(u);//持久状态
+        trans.commit();//提交
+
+
+
+    }
+    //删除方法
+    @Test
+    public void del(){
+        System.out.println(&quot;删除方法&quot;);
+        Session session = Tests.Trans();
+        Transaction trans = session.beginTransaction();
+        //实例化对象
+        Users u = new Users();//临时状态
+        u.setEid(3);
+        session.delete(u);
+        trans.commit();
+
+
+    }
+    //修改方法1：只修改写入的属性
+    @Test
+    public void update1(){
+        System.out.println(&quot;修改方法1&quot;);
+        Session session = Tests.Trans();
+        //开启事物
+        Transaction trans = session.beginTransaction();
+        Users u = (Users) session.get(Users.class, 1);//直接转换为持久态
+        u.setEname(&quot;张小三&quot;);
+        trans.commit();//提交的时候，如果u与数据库不一致，则执行update
+        System.out.println(u);//游离态
+
+
+    }
+     //修改方法2：全部修改，如果没写，则数据库对应属性为空
+    @Test
+    public void update2(){
+        System.out.println(&quot;修改方法2&quot;);
+        Session session = Tests.Trans();
+        Transaction trans = session.beginTransaction();
+        Users u = new Users();
+        u.setEid(2);
+        u.setTelephone(&quot;13222223333&quot;);
+        session.update(u);
+        trans.commit();
+    }
+    //修改方法3 :全部修改，如果没写，则数据库对应属性为空
+    @Test
+    public void update3(){
+        System.out.println(&quot;修改方法3&quot;);
+        Session session = Tests.Trans();
+        Transaction trans = session.beginTransaction();
+        Users u = new Users();
+        u.setEid(2);
+        u.setEname(&quot;李四&quot;);
+        session.merge(u);
+        trans.commit();
+    }
+    //修改方法4:全部修改 ，如果没写，则对应属性为空
+    @Test
+    public void update4(){
+        System.out.println(&quot;修改方法4&quot;);
+        Session session = Tests.Trans();
+        Transaction trans = session.beginTransaction();
+        Users u = new Users();
+        u.setEid(3);
+        u.setEname(&quot;王小五&quot;);
+        u.setTelephone(&quot;13299998888&quot;);
+        session.saveOrUpdate(u);
+        trans.commit();
+    }
+
+    //按主键查询load 如果没有记录则抛出异常
+        @Test
+        public void load(){
+            System.out.println(&quot;load查询&quot;);
+            Session session = Tests.Trans();
+            Transaction trans = session.beginTransaction();
+            //按主键查找数据,load:第一个参数时要查询的镖所对应的实体类，第二个参数时主键值
+            //当数据库有该主键值得记录时，返回一个对象
+            //当数据库中没有该主键值得记录时，抛出异常
+            Users u = (Users)session.load(Users.class, 1);
+
+            System.out.println(u);
+            //事物提交
+            trans.commit();
+
+
+        }
+        //按主键查询get 如果没有记录返回null
+        @Test
+        public void get(){
+            System.out.println(&quot;get查询&quot;);
+            Session session = Tests.Trans();
+            Transaction trans = session.beginTransaction();
+            //按主键查找数据,load:第一个参数时要查询的镖所对应的实体类，第二个参数时主键值
+            //当数据库有该主键值得记录时，返回一个对象
+            //当数据库中没有该主键值得记录时，返回null
+            Users u = (Users)session.get(Users.class, 1);
+
+            System.out.println(u);
+            //事物提交
+            trans.commit();
+
+
+        }
+
+
+}
+</code></pre>
+<blockquote>
+<p>SessionFactory无须反复创建</p>
+</blockquote>
+<hr>
+
+<h4 id="附"><a href="#附" class="headerlink" title="附:"></a>附:</h4><h5 id="4种修改方法（-我在生成内容时，记录了修改的四种方法不同之处，仅表示个人见解，具体方法见上述代码）"><a href="#4种修改方法（-我在生成内容时，记录了修改的四种方法不同之处，仅表示个人见解，具体方法见上述代码）" class="headerlink" title="4种修改方法（ 我在生成内容时，记录了修改的四种方法不同之处，仅表示个人见解，具体方法见上述代码）"></a>4种修改方法（ 我在生成内容时，记录了修改的四种方法不同之处，仅表示个人见解，具体方法见上述代码）</h5><ul>
+<li>方法1：只修改写入的属性 未写的属性不变</li>
+<li>方法2：update 直接修改全部的属性 如果没写 则数据库对应属性为空</li>
+<li>方法3：merge 全部修改 如果没写 则数据库对应属性为空（与方法2不同的是，merge方法先select一遍）</li>
+<li>方法4：有则修改 无则保存 全部修改 如果没写 则数据库对应属性为空 与方法3一致，修改之前先select一遍</li>
+</ul>
+<h5 id="2种查询方法（load、get）"><a href="#2种查询方法（load、get）" class="headerlink" title="2种查询方法（load、get）"></a>2种查询方法（load、get）</h5><p>代码见上述<br>-Object get（Class clazz,Serializable id）若数据不存在，返回null<br>-Object load（Class clazz，Serializable id）若数据不存在，使用时抛出ObjectNotFoundException</p>
+<h5 id="hibernate中Java对象的三种状态"><a href="#hibernate中Java对象的三种状态" class="headerlink" title="hibernate中Java对象的三种状态"></a>hibernate中Java对象的三种状态</h5><ul>
+<li>瞬时状态（Transient）</li>
+<li>持久状态（Persistent）</li>
+<li>游离状态（Detached）</li>
+</ul>
+<p><img src="/2020/04/04/Hibernate%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E2%80%94%E2%80%94%E5%AE%9E%E7%8E%B0%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5-0/29bd6dc17a3dcd8c3b44326ddd469da.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<h5 id><a href="#" class="headerlink" title></a></h5><p>最后附两张总结图片<br><img src="/2020/04/04/Hibernate%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E2%80%94%E2%80%94%E5%AE%9E%E7%8E%B0%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5-0/43ecc9704a7166ac984f0122c270122.png" srcset="/img/loading.gif" alt="Alt text"><br><img src="/2020/04/04/Hibernate%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E2%80%94%E2%80%94%E5%AE%9E%E7%8E%B0%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5-0/cde213aa384bd76f1c33fc83283ce76.png" srcset="/img/loading.gif" alt="Alt text"></p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+  <!-- 备案信息 -->
+  <a href="http://beian.miit.gov.cn/" target="_blank"
+     rel="nofollow noopener">辽ICP证20002476号</a>
+  
+    <a
+      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20002476"
+      rel="nofollow noopener"
+      class="police-beian"
+      target="_blank"
+    >
+      <span class="police-beian-sep">&nbsp;|&nbsp;</span>
+      
+        <img src="/img/police_beian.png" srcset="/img/loading.gif" />
+      
+      <span>辽ICP备20002476号-1</span>
+    </a>
+  
+
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Hibernate简单配置——实现增删改查&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="霖雨成思">
   <meta name="keywords" content="">
-  <title>Linux命令-命令基础 ~ 霖雨成思的博客</title>
+  <title>归档 ~ 霖雨成思的博客</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" false
+    <div class="view intro-2" id="background" parallax=true
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,41 +116,6 @@
               
             </span>
 
-            
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期二, 三月 17日 2020, 8:41 早上
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    889 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      3 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
             
           </div>
 
@@ -162,63 +127,35 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 8 篇文章</p>
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/04/04/Hibernate%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E2%80%94%E2%80%94%E5%AE%9E%E7%8E%B0%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5-0/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Hibernate简单配置——实现增删改查</span>
+      <span style="float: right;">04-04</span>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <h2 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a><p align="center">Linux命令</h2><h3 id="命令基础"><a href="#命令基础" class="headerlink" title="命令基础"></a>命令基础</h3><p>Linux命令是严格区分大小写的，<br>登录后会显示一个Shell提示符，普通用户的提示符是$，root用户的提示符是#；<br>查看日期时间：date<br>队列：可以一次提交多条命令，命令之间用分号（;）隔开，Linux会依次执行<br>清屏：clear<br>强制换行：先输入反斜杠（\）再回车<br>输出：echo“ ”<br>查找文件：find / -size +50M（表示在根目录查找文件大小为大于50M的文件）<br>命令置于后台：命令后加一个&amp;</p>
-<h4 id="文件目录类命令"><a href="#文件目录类命令" class="headerlink" title="文件目录类命令"></a>文件目录类命令</h4><p>列出某个目录下文件的信息：ls （-l长格式输出）（-a显示隐藏文件）（–help获取该命令的帮助）</p>
-<h3 id="文件目录命令1"><a href="#文件目录命令1" class="headerlink" title="文件目录命令1"></a>文件目录命令1</h3><p>列出当前工作路径的命令：pwd<br>改变工作路径：cd（..访问父目录；.当前目录）<br>显示文本文件的内容：cat（适用于查看小文件）<br>输出重定向（在其他文件中查看制定目录）：文件名 &gt; 文件名（如果不存在自动创建，已经存在则会覆盖里面的内容，&gt;&gt;表示追加内容；相当于复制了一份）<br>    如果没有输入被输出文件，则会进入键盘输入制定内容，Ctrl+D提交（优点：快速创建小文件）<br>查看内容较长的文件：more +50（回车下一行，空格切一页，50行为一页，只能向下翻页）<br>查看文件：less（可以上下左右翻页，按Q键退出）<br>显示文件前若干行：head 5（前5行）<br>显示文件后若干行：tail 5（后5行）<br>创建目录：mkdir -p a/b/c（-p表示创建多层目录，abc为想要创建的目录）<br>删除空目录：rmdir（必须为空目录，与mkdir作用反之，方法相同）<br>复制文件：cp a b（必须有两个参数）<br>复制目录：cp -R a b<br>重命名文件（移动文件）：mv a b<br>i选项：执行询问（输入y回车表示确定，反之为n）<br>f选项：强制操作<br>r选项：递归<br>删除文件：rm</p>
-<blockquote>
-<p>注意：rm -rf /千万不要执行，尤其使用root账户，这个命令会将你的Linux系统根分区全部清空（格式化）<br>快速创建一个新文件：touch（如果后面的参数对应的文件不存在，就快速创建这个文件，如果这个文件已经存在了则把它的修改时间更新为当前的时间）<br>比较两个文件的区别：diff</p>
-</blockquote>
-<hr>
-<p><strong>硬链接</strong><br>创建链接：ln（默认每个文件链接数初始为1）</p>
-<blockquote>
-<p>链接数：是指向磁盘上这个文件数据存储位置的逻辑上的文件名的个数<br>例如：ln b c 表示为b文件创建一个链接为c，此时b文件的链接数由1变为2，而同时多了一个c文件，c的链接数也是2<br>ln命令默认创建的是硬链接，也就是说，b和c对应磁盘上同一块空间，只是逻辑上是两个文件，但在物理磁盘上，是同一块空间<br>此时删除c，b不会有影响，但指向这个逻辑磁盘数少了一个，链接数由2变为1<br><strong>软链接</strong><br>创建链接：ln -s b c（符号链接/软链接）<br>创建后，b的链接数还是1，此时c文件是一个符号链接文件<br>c删掉后，b也不会受到影响<br>所谓符号链接，有点像Windows系统中的创建快捷方式</p>
-</blockquote>
 
-            <hr>
-          </div>
-          <br>
-          <div>
-            <p>
-            
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-            
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
-  </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- custom -->
-
-
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-  </div>
-</div>
-
     
   </main>
 
@@ -315,11 +252,6 @@
 
 
 
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -360,7 +292,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Linux命令-命令基础&nbsp;",
+        "归档&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

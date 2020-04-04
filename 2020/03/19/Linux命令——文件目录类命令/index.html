@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="霖雨成思">
+  <meta name="keywords" content="">
+  <title>Linux命令——文件目录类命令 ~ 霖雨成思的博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>霖雨成思的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期四, 三月 19日 2020, 11:39 中午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.5k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      5 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="Linux命令-文件目录命令"><a href="#Linux命令-文件目录命令" class="headerlink" title="Linux命令-文件目录命令"></a><p align="center">Linux命令-文件目录命令</p></h2><p align="right">记录人：霖雨成思
+
+</p><h3 id="命令基础"><a href="#命令基础" class="headerlink" title="命令基础"></a>命令基础</h3><p>Linux命令是严格区分大小写的，<br>登录后会显示一个Shell提示符，普通用户的提示符是$，root用户的提示符是#；<br>查看日期时间：date<br>队列：可以一次提交多条命令，命令之间用分号（;）隔开，Linux会依次执行<br>清屏：clear<br>强制换行：先输入反斜杠（\）再回车<br>输出：echo“ ”<br>查找文件：find / -size +50M（表示在根目录查找文件大小为大于50M的文件）<br>例如:find  -name、文件路径或类型(-type f 表示类型必须是普通文件)<br>例如:把文件找出来删掉:find / -size +100M -type f -exec rm -rf {} ; (-exec是执行的意思，找到某些符合条件的命令后，执行后面的命令    {};代表的是我们找到的这个对象  具体执行的命令是用rm把他删掉，然后用rf选项的作用是强制递归)<br>命令置于后台：命令后加一个&amp;</p>
+<h4 id="文件目录类命令"><a href="#文件目录类命令" class="headerlink" title="文件目录类命令"></a>文件目录类命令</h4><p>列出某个目录下文件的信息：ls （-l长格式输出）（-a显示隐藏文件）（–help获取该命令的帮助）（-R目录递归通过）（-ld目录和符号链接信息）</p>
+<h3 id="文件目录命令1"><a href="#文件目录命令1" class="headerlink" title="文件目录命令1"></a>文件目录命令1</h3><p>列出当前工作路径的命令：pwd<br>改变工作路径：cd（..访问父目录；.当前目录）<br>显示文本文件的内容：cat（适用于查看小文件）<br>输出重定向（在其他文件中查看制定目录）：文件名 &gt; 文件名（如果不存在自动创建，已经存在则会覆盖里面的内容，&gt;&gt;表示追加内容；相当于复制了一份）<br>    如果没有输入被输出文件，则会进入键盘输入制定内容，Ctrl+D提交（优点：快速创建小文件）<br>查看内容较长的文件：more +50（回车下一行，空格切一页，50行为一页，只能向下翻页）<br>查看文件：less（可以上下左右翻页，按Q键退出）<br>显示文件前若干行：head 5（前5行）<br>显示文件后若干行：tail 5（后5行）<br>创建目录：mkdir -p a/b/c（-p表示创建多层目录，abc为想要创建的目录）<br>删除空目录：rmdir（必须为空目录，与mkdir作用反之，方法相同）<br>复制文件：cp a b（必须有两个参数）<br>复制目录：cp -R a b<br>剪切、重命名文件（移动文件）：mv a b<br>i选项：执行询问（输入y回车表示确定，反之为n）<br>f选项：强制操作<br>r选项：递归<br>删除文件：rm</p>
+<blockquote>
+<p>注意：rm -rf /千万不要执行，尤其使用root账户，这个命令会将你的Linux系统根分区全部清空（格式化）<br>快速创建一个新文件：touch（如果后面的参数对应的文件不存在，就快速创建这个文件，如果这个文件已经存在了则把它的修改时间更新为当前的时间）<br>比较两个文件的区别：diff</p>
+</blockquote>
+<hr>
+<p><strong>硬链接</strong><br>创建链接：ln（默认每个文件链接数初始为1）</p>
+<blockquote>
+<p>链接数：是指向磁盘上这个文件数据存储位置的逻辑上的文件名的个数<br>例如：ln b c 表示为b文件创建一个链接为c，此时b文件的链接数由1变为2，而同时多了一个c文件，c的链接数也是2<br>ln命令默认创建的是硬链接，也就是说，b和c对应磁盘上同一块空间，只是逻辑上是两个文件，但在物理磁盘上，是同一块空间<br>此时删除c，b不会有影响，但指向这个逻辑磁盘数少了一个，链接数由2变为1<br><strong>软链接</strong><br>创建链接：ln -s b c（符号链接/软链接）<br>创建后，b的链接数还是1，此时c文件是一个符号链接文件<br>c删掉后，b也不会受到影响<br>所谓符号链接，有点像Windows系统中的创建快捷方式</p>
+</blockquote>
+<h3 id="文件目录命令2"><a href="#文件目录命令2" class="headerlink" title="文件目录命令2"></a>文件目录命令2</h3><p>压缩文件命令：gzip -v（表示显示压缩详情信息）压缩后替代原始文件<br>解压文件命令：gunzip -v（表示显示解压详情信息）解压后替代原始文件<br>目录不能压缩，首先需要归档（就是打包，即把它变成一个普通文件，对应的文件扩展名是.tar）<br>在Windows中，文件夹解压可以直接操作，但在Linux下需要分两步：先（tar）归档，再gzip（压缩）<br>z调用gzip；<br>c，create创建归档文件；<br>f，制定file文件名<br>v，view查看信息<br>通常zcvf一起用（tar -zcvf 文件夹），我们从网上下载的Linux文件很多都是.tar.gz这种格式的，意味着都是对目录先归档再压缩生成的。tar -zxvf还原<br>使用RPM命令安装软件包：</p>
+<blockquote>
+<p>软件仓库<br>yum install 软件名称</p>
+</blockquote>
+<blockquote>
+<p>RPM：RedHat Package Manage红帽软件包管理<br>在官网下载相应软件后，deb适用Ubuntu系统，我用的是centos，所以选rpm<br>通常安装命令：rpm -ivh 文件<br>查询软件包安装信息 rpm -qa(把所有已经安装的软件包信息列出来）<br>产看软件包现在是否已经安装：<br>管道操作：“|”叫做管道符，管道的意思是说：把前面命令执行的输出，作为后面命令的输入，相当于一个管子把他们对接了起来<br>grep用来找一个文件里面查找指定的<strong>关键字</strong>，有的话把对应的行显示出来(-n 表示把关键字的前后n行一并显示)<br>查看系统是否安装某个软件包：rpm -qa  软件<br>删除软件包：rpm -e 软件包名<br>查询命令：–help（善于查参数或选项）<br>          man 命令（善于查函数）</p>
+</blockquote>
+<h3 id="文件目录命令3"><a href="#文件目录命令3" class="headerlink" title="文件目录命令3"></a>文件目录命令3</h3><p>列出<strong>命令</strong>在当前系统中磁盘位置的命令:whertis<br>列出某个命令的一句话的介绍:whatis (不是每个程序都有whatis的命令解释)<br>详细说明：–”help”</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+  <!-- 备案信息 -->
+  <a href="http://beian.miit.gov.cn/" target="_blank"
+     rel="nofollow noopener">辽ICP证20002476号</a>
+  
+    <a
+      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20002476"
+      rel="nofollow noopener"
+      class="police-beian"
+      target="_blank"
+    >
+      <span class="police-beian-sep">&nbsp;|&nbsp;</span>
+      
+        <img src="/img/police_beian.png" srcset="/img/loading.gif" />
+      
+      <span>辽ICP备20002476号-1</span>
+    </a>
+  
+
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Linux命令——文件目录类命令&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
