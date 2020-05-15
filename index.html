@@ -144,6 +144,57 @@
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/15/Struts2%E6%8B%A6%E6%88%AA%E5%99%A8/">
+        <p class="h4 index-header">Struts2拦截器</p>
+      </a>
+
+      <a href="/2020/05/15/Struts2%E6%8B%A6%E6%88%AA%E5%99%A8/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Struts2拦截器记录人：霖雨成思
+
+Struts2架构剖析
+核心接口和类
+为什么需要拦截器
+早期MVC框架框架将一些通用操作硬编码在核心控制器中，致使框架灵活性不足、可扩展性降低
+Struts2将核心功能放到多个拦截器中实现，拦截器可自由选择和组合，增强了灵活性，有利于系统的解耦
+
+Struts2大多数核心功能时通过拦截器实现的，每个拦截器完成某项功能拦截器方法在Action执行之前喝之后执行拦截器栈
+从结构上看，拦截器栈相当于多个拦截器的组合
+在功能上，拦截器也是拦截器拦截器与过滤器原理很相似
+经验：为Action提供附加功能时，无需修改Action代码，使用拦截器来提供
+
+
+
+拦截器的执行过程是一个递归的过程
+
+Struts2自带拦截器params拦截器
+负责将请求参数设置为Action属性servletConfig拦截器
+将源于Servlet API的各种对象注入到ActionfileUpload拦截器
+对文件上传提供支持exception拦截器
+捕获异常，并且将异常映射到用户自定义的错误页面validation拦截器
+调用验证框架进行数据验证workflow拦截器
+调用Ac</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-15&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
       <a href="/2020/05/15/Linux%E8%BF%90%E8%A1%8Chadoop%E6%8F%90%E7%A4%BA%E6%97%A0%E6%9D%83%E9%99%90/">
         <p class="h4 index-header">Linux运行hadoop提示无权限</p>
       </a>
@@ -459,44 +510,6 @@ eth0表示第一块以太网卡lo表示虚拟网卡，一般用于测试
       <div class="index-btm">
         
           <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-29&nbsp;&nbsp;
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/02/28/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-        <p class="h4 index-header">hexo博客搭建</p>
-      </a>
-
-      <a href="/2020/02/28/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">hexo博客搭建
-想说一下这篇博客完全是实战操作，无任何理论。搜索了很多博客，才把自己的博客软件hexo安装完成，就算是做一个笔记吧。（本篇只讲述了通过hexo搭建博客传到github中去，并更改主题的经历，并不包含域名和云服务器的故事）
-
-首先准备的材料
-Git安装包
-Node.js安装包
-github账户
-
-接着讲一下这三个材料都怎么获取
-1. Git安装包官方下载地址 https://cdn.npm.taobao.org/dist/git-for-windows/v2.25.0.windows.1/Git-2.25.0-64-bit.exe下载之后安装就可以了，我安装的时候在Adjusting your PATH environment下，勾选了Use Git from Git Bash only（默认是第二个选项，我选择了第一个），接下来全点next就可以了，直到安装完成。
-2. Node.js安装包官方下载地址 https://nodejs.org/dist/v12.16.1/node-v12.16.1-x64.msi同样，下载之后安装，我的电脑安装之后不可以再进行安装了，如</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-28&nbsp;&nbsp;
         
         
         
