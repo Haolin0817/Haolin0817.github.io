@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="霖雨成思">
+  <meta name="keywords" content="">
+  <title>Spring中的Bean ~ 霖雨成思的博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>霖雨成思的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期五, 五月 22日 2020, 9:28 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.2k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      8 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="Spring中的Bean"><a href="#Spring中的Bean" class="headerlink" title="Spring中的Bean"></a><p align="center">Spring中的Bean</p></h2><p align="right">记录人：霖雨成思
+
+</p><h4 id="Bean的配置"><a href="#Bean的配置" class="headerlink" title="Bean的配置"></a>Bean的配置</h4><p>如果把Spring看做一个大型的工厂，而Spring容器中的Bean就是该工厂的产品，要想使用这个工厂生产和管理Bean，就需要在配置文件中告诉它需要哪些Bean，以及需要使用何种方式将这些Bean装配到一起。<br><img src="/2020/05/22/Spring%E4%B8%AD%E7%9A%84Bean/1.png" srcset="/img/loading.gif" alt="Alt text"><br><b>在实际开发中，最常使用的是XML文件格式的配置方式，这种配置方式是通过XML文件来注册并管理Bean之间的依赖关系。</b><br>XML配置文件的根元素是&lt; beans &gt;,&lt; beans &gt;中包含了多个&lt; bean &gt;子元素定义了一个Bean，并描述了该Bean如何被装配到Spring容器中，定义Bean的方式如下所示。</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+    &lt;!—使用id属性定义bean1,其对应的实现类为cn.itcast.bean1 --&gt;
+    &lt;bean id=&quot;bean1&quot; class=&quot;cn.itcast.bean1&quot;/&gt;
+    &lt;!—使用name属性定义bean2,其对应的实现类为cn.itcast.bean2 --&gt;
+    &lt;bean name=&quot;bean2&quot; class=&quot;cn.itcast.bean2&quot;/&gt;
+&lt;/beans&gt;
+</code></pre>
+<blockquote>
+<p>通常一个普通的Bean只需要定义id（或name）和class两个属性即可，如果Bean中未指定id和name，则Spring会将class值当做id使用。</p>
+</blockquote>
+<h4 id="Bean的实例化"><a href="#Bean的实例化" class="headerlink" title="Bean的实例化"></a>Bean的实例化</h4><p>在面向对象的程序中，要想使用某个对象，就需要先实例化这个对象。在Spring中，实例化Bean有三种方式，分别为构造器实例化、静态工厂实例化和实例化工厂方式实例化。</p>
+<ul>
+<li><b>构造器实例化</b>是指Spring容器通过Bean对应的类中默认的构造函数来实例化Bean。</li>
+<li>使用<b>静态工厂</b>是实例化Bean的另一种方式，该方式要求自己创建一个静态工厂的方法来创建Bean的实例</li>
+<li><b>实例化工厂方式</b>的工厂类中看，不再使用静态方法创建Bean实例，而是采用直接创建Bean实例的方式。同时，在配置文件中，需要实例化的Bean也不是通过class属性直接指向其实例化的类，而是通过factory-bean属性配置一个实例工厂，然后使用factory-method属性确定使用工厂中的哪个方法。<h4 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h4><h5 id="作用域的种类"><a href="#作用域的种类" class="headerlink" title="作用域的种类"></a>作用域的种类</h5>Spring3为Bean实例定义了五种Bean的作用域，这五种作用域说明如下所示。</li>
+<li>singleton：单例模式，使用singleton定义的bean在Spring容器中将只有一个实例，也就是说，无论有多少个Bean引用它，始终将指向同一个对象。这也是Spring容器默认的作用域。</li>
+<li>prototype：原型模式，每次通过Spring容器获取的prototype定义的Bean时，容器都将创建一个新的Bean实例。</li>
+<li>request：在一次HTTP请求中，容器会返回该Bean的同一个实例。而对不同的HTTP请求则会产生一个新的Bean，而且该Bean仅在当前HTTP Request内有效。</li>
+<li>session：在一次HTTP Session中，容器会返回该Bean的同一个实例。而对不同的HTTP请求则会产生一个新的Bean，而且该Bean仅在当前HTTP Session内有效。</li>
+<li>global Session：在一个全局的HTTP Session中，容器会返回该Bean的同一个实例。仅在使用portlet context时有效。<h6 id="Singleton作用域"><a href="#Singleton作用域" class="headerlink" title="Singleton作用域"></a>Singleton作用域</h6>Singleton作用域是Spring容器默认的作用域，当一个bean的作用域为singleton时，Spring容器中只会存在一个共享的Bean实例，并且所有对bean的请求，只要id与该bean定义相匹配的，就只会返回Bean的同一个实例。<br>在Spring配置文件中，可以使用bean元素的scope属性，将Bean的作用域定义成singleton。例如：<pre><code class="xml">&lt;bean id=&quot;hello&quot; class=&quot;cn.itcast.hello.Hello&quot; scope=&quot;singleton&quot;/&gt;</code></pre>
+<h6 id="Prototype作用域"><a href="#Prototype作用域" class="headerlink" title="Prototype作用域"></a>Prototype作用域</h6>对需要保持会话状态的Bean（如Struts 2的Action类）应该使用prototype作用域。在使用Prototype作用域时，Spring容器会为每个对该Bean的请求都创建一个新的实例。<br>要将Bean定义为prototype，只需在xml文件中将&lt; bean &gt;元素的scope属性的值设置为prototype即可。例如：<pre><code class="xml">&lt;bean id=&quot;hello&quot; class=&quot;cn.itcast.hello.Hello&quot; scope=&quot;prototype &quot;/&gt;</code></pre>
+<h4 id="Bean的声明周期"><a href="#Bean的声明周期" class="headerlink" title="Bean的声明周期"></a>Bean的声明周期</h4>接下来，将在Bean作用域的基础上讲解Bean的生命周期。Spring生命周期的意义就在于，可以利用Bean在其存活期间的指定时刻完成一些相关操作。这种时刻可能有很多，但一般情况下，常会在Bean的postin<br>itiation(初始化后)和predestruction（销毁前）执行一些相关操作。<br>Spring容器中Bean的声明周期流程如图所示。<br><img src="/2020/05/22/Spring%E4%B8%AD%E7%9A%84Bean/1.png" srcset="/img/loading.gif" alt="Alt text"><h4 id="Bean的装配方式"><a href="#Bean的装配方式" class="headerlink" title="Bean的装配方式"></a>Bean的装配方式</h4>Bean的装配可以理解为依赖关系注入，Bean的装配方式即Bean依赖注入的方式。Spring容器支持多种形式的Bean的装配方式，如基于XML的装配、基于Annotation的装配和自动装配等，本节中将主要讲解这三种装配方式的使用。</li>
+</ul>
+<h5 id="基于XML的装配"><a href="#基于XML的装配" class="headerlink" title="基于XML的装配"></a>基于XML的装配</h5><p><img src="/2020/05/22/Spring%E4%B8%AD%E7%9A%84Bean/1.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<ul>
+<li>设值注入(Setter Injection)<br> 设值注入要求一个Bean必须满足以下两点要求：<br><b>√</b>  Bean类必须提供一个默认的构造方法。<br><b>√</b> Bean类必须为需要注入的属性提供对应的set方法。<br> 使用设值注入时，在Spring配置文件中，需要使用&lt; bean &gt;元素的子元素&lt; property &gt;元素来为每个属性注入值。</li>
+<li>构造注入<br>使用构造注入时，在配置文件里，主要是使用&lt; constructor-arg &gt;标签来定义构造方法的参数，可以使用其value属性（或子元素）来设置该参数的值<h5 id="基于Annotation的装配"><a href="#基于Annotation的装配" class="headerlink" title="基于Annotation的装配"></a>基于Annotation的装配</h5>在Spring中，尽管使用XML配置文件可以实现Bean的装配工作，但如果应用中有很多Bean时，会导致XML配置文件过于臃肿，给后续的维护和升级工作带来一定的困难。为此，Java从JDK1.5以后，提供了Annotation（注解）功能，Spring也提供了对Annotation技术的全面支持。</li>
+</ul>
+<ul>
+<li>@Component ：可以使用此注解描述Spring中的Bean，但它是一个泛化的概念，仅仅表示一个组件 (Bean) ，并且可以作用在 - 任何层次。使用时只需将该注解标注在相应类上即可。</li>
+<li>@Repository：用于将数据访问层 (DAO 层 ) 的类标识为Spring中的Bean，其功能与 @Component 相同。</li>
+<li>@Service：通常作用在业务层（Service层），用于将业务层的类标识为Spring中的Bean，其功能与 @Component 相同。</li>
+<li>@Constroller：通常作用在控制层（如Struts2的Action），用于将控制层的类标识为Spring中的Bean，其功能与@Component 相同。</li>
+<li>@Autowired：用于对Bean的属性变量、属性的Set方法及构造函数进行标注，配合对应的注解处理器完成Bean的自动配置工作。默认按照Bean的类型进行装配。</li>
+<li>@Resource：其作用与Autowired一样。其区别在于@Autowired默认按照Bean类型装配，而@Resource默认按照Bean实例名称进行装配。@Resource中有两个重要属性：name和type。Spring将name属性解析为Bean实例名称，type属性解析为Bean实例类型。如果指定name属性，则按实例名称进行装配；如果指定type属性，则按Bean类型进行装配；如果都不指定，则先按Bean实例名称装配，如果不能匹配，再按照Bean类型进行装配；如果都无法匹配，则抛出NoSuchBeanDefinitionException异常。</li>
+<li>@Qualifier：与@Autowired注解配合使用，会将默认的按Bean类型装配修改为按Bean的实例名称装配，Bean的实例名称由@Qualifier注解的参数指定。<h5 id="自动自动装配"><a href="#自动自动装配" class="headerlink" title="自动自动装配"></a>自动自动装配</h5>自动装配就是讲一个Bean注入到其他Bean的Property中，要使用自动装配，就需要配置&lt; bean &gt;元素的autowire属性。</li>
+</ul>
+<p> autowire属性有5个值，其值说明如下所示。</p>
+<ul>
+<li>byName：根据Property的Name自动装配，如果一个bean的name，和另一个bean中的Property的name相同，则自动装配这个bean到Property中。</li>
+<li>byType：根据Property的数据类型（Type）自动装配，如果一个bean的数据类型，兼容另一个bean中Property的数据类型，则自动装配。</li>
+<li>constructor：根据构造函数参数的数据类型，进行byType模式的自动装配。</li>
+<li>autodetect：如果发现默认的构造函数，用constructor模式，否则用byType模式。</li>
+<li>no：默认情况下，不使用自动装配，Bean依赖必须通过ref元素定义。</li>
+</ul>
+<blockquote>
+<p>本文根据哈尔滨华育兴业教师欧阳广靖老师的课记录</p>
+</blockquote>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+  <!-- 备案信息 -->
+  <a href="http://beian.miit.gov.cn/" target="_blank"
+     rel="nofollow noopener">辽ICP证20002476号</a>
+  
+    <a
+      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20002476"
+      rel="nofollow noopener"
+      class="police-beian"
+      target="_blank"
+    >
+      <span class="police-beian-sep">&nbsp;|&nbsp;</span>
+      
+        <img src="/img/police_beian.png" srcset="/img/loading.gif" />
+      
+      <span>辽ICP备20002476号-1</span>
+    </a>
+  
+
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Spring中的Bean&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

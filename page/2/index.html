@@ -144,6 +144,106 @@
     
     
     <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/19/Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB%E5%91%BD%E4%BB%A4/">
+        <p class="h4 index-header">Linux命令——文件目录类命令</p>
+      </a>
+
+      <a href="/2020/03/19/Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB%E5%91%BD%E4%BB%A4/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Linux命令-文件目录命令记录人：霖雨成思
+
+命令基础Linux命令是严格区分大小写的，登录后会显示一个Shell提示符，普通用户的提示符是$，root用户的提示符是#；查看日期时间：date队列：可以一次提交多条命令，命令之间用分号（;）隔开，Linux会依次执行清屏：clear强制换行：先输入反斜杠（\）再回车输出：echo“ ”查找文件：find / -size +50M（表示在根目录查找文件大小为大于50M的文件）例如:find  -name、文件路径或类型(-type f 表示类型必须是普通文件)例如:把文件找出来删掉:find / -size +100M -type f -exec rm -rf {} ; (-exec是执行的意思，找到某些符合条件的命令后，执行后面的命令    {};代表的是我们找到的这个对象  具体执行的命令是用rm把他删掉，然后用rf选项的作用是强制递归)命令置于后台：命令后加一个&amp;
+文件目录类命令列出某个目录下文件的信息：ls （-l长格式输出）（-a显示隐藏文件）（–help获取该命令的帮助）（-R目录递归通过）（-ld目录和符号链接信息</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-19&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/03/17/Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80/">
+        <p class="h4 index-header">Linux命令——基础</p>
+      </a>
+
+      <a href="/2020/03/17/Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Linux命令命令基础Linux命令是严格区分大小写的，登录后会显示一个Shell提示符，普通用户的提示符是$，root用户的提示符是#；查看日期时间：date队列：可以一次提交多条命令，命令之间用分号（;）隔开，Linux会依次执行清屏：clear强制换行：先输入反斜杠（\）再回车输出：echo“ ”查找文件：find / -size +50M（表示在根目录查找文件大小为大于50M的文件）命令置于后台：命令后加一个&amp;
+文件目录类命令列出某个目录下文件的信息：ls （-l长格式输出）（-a显示隐藏文件）（–help获取该命令的帮助）
+文件目录命令1列出当前工作路径的命令：pwd改变工作路径：cd（..访问父目录；.当前目录）显示文本文件的内容：cat（适用于查看小文件）输出重定向（在其他文件中查看制定目录）：文件名 &gt; 文件名（如果不存在自动创建，已经存在则会覆盖里面的内容，&gt;&gt;表示追加内容；相当于复制了一份）    如果没有输入被输出文件，则会进入键盘输入制定内容，Ctrl+D提交（优点：快速创建小文件）查看内容较长的文件：more +50（回车下一行，空格</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-17&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/02/29/Linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/">
+        <p class="h4 index-header">Linux网络配置</p>
+      </a>
+
+      <a href="/2020/02/29/Linux%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Linux网络设置
+在视频课中学习的Linux知识做的笔记，包括修改IP、网关、DNS、子网掩码一些指令和方法。
+记录人：霖雨成思
+
+（在终端命令中）切换root（超级管理员）命令：su
+$表示是普通用户状态，#表示root状态
+（在终端命令中）切换终端：Alt+F1/F2/F3/F4/F5/F6每个终端可以有不同的命令，最多有六个终端
+####（在终端命令中） 更改主机名：hostname 修改的主机名（必须在root权限下）
+hostname单独写表示查看目前的主机名。注意这种更改只是临时生效，系统重启会恢复原来的主机名。
+####（在终端命令下）查看网卡命令：ifconfig
+eth0表示第一块以太网卡lo表示虚拟网卡，一般用于测试
+####（在终端命令下）查看所有的网卡命令（包括不活动的网卡）：ifconfig -a####（在终端命令下）关闭网卡命令：ifconfig 网卡名称 down （ifdown 网卡名称）####（在终端命令下）启用网卡命令：ifconfig 网卡名称 up（ifup 网卡名称）####（在终端命令下）更改网卡IP地址命令：ifconfig 网卡名称</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-02-29&nbsp;&nbsp;
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
       <a href="/2020/02/28/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
         <p class="h4 index-header">hexo博客搭建</p>
       </a>

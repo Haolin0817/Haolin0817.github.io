@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="description" content="">
+  <meta name="author" content="霖雨成思">
+  <meta name="keywords" content="">
+  <title>SpringAOP-面向切面编程 ~ 霖雨成思的博客</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>霖雨成思的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" false
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期五, 五月 22日 2020, 10:28 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.3k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      4 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="SpringAOP-面向切面编程"><a href="#SpringAOP-面向切面编程" class="headerlink" title="SpringAOP-面向切面编程"></a><p align="center">SpringAOP-面向切面编程</p></h2><p align="right">记录人：霖雨成思
+
+</p><h4 id="什么是AOP？"><a href="#什么是AOP？" class="headerlink" title="什么是AOP？"></a>什么是AOP？</h4><p>为了将那些与业务无关，却为业务模块所共同调用的逻辑或责任封装起来，Spring提供了面向切面的编程方式，也称Spring AOP，AOP的全称是Aspect Oriented Programing，即面向切面编程。<br>AOP采取横向抽取机制，取代了传统纵向继承体系重复性代码，主要体现在事务处理、日志管理、权限控制、异常处理等方面，使开发人员在编写业务逻辑时可以专心核心业务，提高代码的可维护性。</p>
+<h4 id="AOP术语"><a href="#AOP术语" class="headerlink" title="AOP术语"></a>AOP术语</h4><p>AOP的专业术语包括Joinpoint、Pointcut、Advice、Target、Weaving、Proxy和Aspect，对于专业术语的解释，具体如下：</p>
+<ul>
+<li><p>Joinpoint（连接点）：是指那些被拦截到的点，在Spring中，可以被动态代理拦截目标类的方法。</p>
+</li>
+<li><p>Pointcut（切入点）：是指要对哪些Joinpoint进行拦截，即被拦截的连接点。</p>
+</li>
+<li><p>Advice（通知）：是指拦截到Joinpoint之后要做的事情，即对切入点增强的内容。</p>
+</li>
+<li><p>Target（目标）：是指代理的目标对象。</p>
+</li>
+<li><p>Weaving（织入）：是指把增强代码应用到目标上，生成代理对象的过程。</p>
+</li>
+<li><p>Proxy（代理）：是指生成的代理对象。</p>
+</li>
+<li><p>Aspect（切面）：是切入点和通知的结合。</p>
+<h4 id="手动代理"><a href="#手动代理" class="headerlink" title="手动代理"></a>手动代理</h4><p> 代理模式是 Java 中的常用设计模式，代理类通过调用被代理类的相关方法，提供预处理、过滤、事后处理等服务。AOP手动使用代理模式有两个典型的例子，分别为JDK动态代理和CGLIB代理。为了让读者了解AOP的执行过程，本小节将通过这两种手动代理的实现方式，结合相关案例，模拟AOP的执行过程。</p>
+<h5 id="JDK动态代理"><a href="#JDK动态代理" class="headerlink" title="JDK动态代理"></a>JDK动态代理</h5><p>JDK动态代理是通过JDK中的java.lang.reflect.Proxy类来实现的。JDK的动态代理用起来非常简单，但是它有局限性，使用动态代理的对象必须实现一个或多个接口。那么，如何代理没有实现接口的类？</p>
+<h4 id="CGLIB代理"><a href="#CGLIB代理" class="headerlink" title="CGLIB代理"></a>CGLIB代理</h4><p>如果想代理没有实现接口的类，那么可以使用CGLIB代理。<br>CGLIB(Code Generation Library)是一个高性能开源的代码生成包，它的底层是通过使用一个小而快的字节码处理框架ASM(Java字节码操控框架)来转换字节码，为一个类创建子类，然后对子类进行增强，解决无接口代理问题。所以CGLIB要依赖于ASM的包</p>
+<h4 id="声明式工厂Bean"><a href="#声明式工厂Bean" class="headerlink" title="声明式工厂Bean"></a>声明式工厂Bean</h4><h5 id="Spring通知类型"><a href="#Spring通知类型" class="headerlink" title="Spring通知类型"></a>Spring通知类型</h5><p>Spring按照通知在目标类方法的连接点位置，可以分为5种类型，具体如下：</p>
+</li>
+<li><p>org.springframework.aop.MethodBeforeAdvice（前置通知）<br>  在目标方法执行前实施增强，可以应用于权限管理等功能。</p>
+</li>
+<li><p>org.springframework.aop.AfterReturningAdvice（后置通知）<br>  在目标方法执行后实施增强，可以应用于关闭流、上传文件、删除临时   文件等功能。</p>
+</li>
+<li><p>org.aopalliance.intercept.MethodInterceptor（环绕通知）<br>  在目标方法执行前后实施增强，可以应用于日志、事务管理等功能。</p>
+</li>
+<li><p>org.springframework.aop.ThrowsAdvice（异常抛出通知）<br>  在方法抛出异常后实施增强，可以应用于处理异常记录日志等功能。</p>
+</li>
+<li><p>org.springframework.aop.IntroductionInterceptor（引介通知）<br> 在目标类中添加一些新的方法和属性，可以应用于修改老版本程序（增强类）。</p>
+<h5 id="声明式Spring-AOP"><a href="#声明式Spring-AOP" class="headerlink" title="声明式Spring AOP"></a>声明式Spring AOP</h5><p> 通过在Spring中创建一个AOP代理的基本方法是，使用org.springframework.aop.framework.ProxyFactoryBean，这个类对应的切入点和通知提供了完整的控制能力，生成指定的内容。该类的常用属性如下<br> <img src="/2020/05/22/SpringAOP-%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/1.png" srcset="/img/loading.gif" alt="Alt text"></p>
+<h5 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h5><p>在Spring通知中，环绕通知是一个非常典型的应用</p>
+<h4 id="Aspect开发"><a href="#Aspect开发" class="headerlink" title="Aspect开发"></a>Aspect开发</h4><p>AspectJ是一个基于Java语言的AOP框架，Spring2.0以后新增了对AspectJ切点表达式的支持。@AspectJ 是AspectJ1.5新增功能，通过JDK5.0注解技术，允许直接在Bean类中定义切面，新版本Spring框架，建议使用AspectJ方式来开发AOP，接下来对两种AspectJ的开发方式进行讲解。</p>
+<h5 id="基于XML的声明式AspectJ"><a href="#基于XML的声明式AspectJ" class="headerlink" title="基于XML的声明式AspectJ"></a>基于XML的声明式AspectJ</h5><p> 基于XML的声明式AspectJ是指，通过在XML文件中进行配置，来定义切面、切入点及声明通知，所有的切面和通知都必须定义在&lt; aop:config &gt;元素内。<br>基于Annotation的声明式AspectJ<br> 基于XML的声明式ApectJ有一个缺点就是要在Spring文件中配置大量的信息。为了解决这个问题，AspectJ框架为AOP提供了一套Annotation注解，用以取代Spring配置文件中为实现AOP功能所配置的臃肿的代码。</p>
+<ul>
+<li>@AspectJ：用于定义一个切面。</li>
+<li>@Before ：用于定义前置通知，相当于BeforeAdvice。</li>
+<li>@AfterReturning：用于定义后置通知，相当于AfterReturningAdvice。</li>
+<li>@Around： 用于定义环绕通知，相当于MethodInterceptor。</li>
+<li>@AfterThrowing： 用于定义抛出通知，相当于ThrowAdvice。</li>
+<li>@After：用于定义最终final通知，不管是否异常，该通知都会执行。</li>
+<li>@DeclareParents：用于定义引介通知，相当于IntroductionInterceptor (不要求掌握)。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>本文根据哈尔滨华育兴业教师欧阳广靖老师的课记录</p>
+</blockquote>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv"></span>总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv"></span>总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人&nbsp;
+  
+  <br>
+
+
+
+    
+  <!-- 备案信息 -->
+  <a href="http://beian.miit.gov.cn/" target="_blank"
+     rel="nofollow noopener">辽ICP证20002476号</a>
+  
+    <a
+      href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=20002476"
+      rel="nofollow noopener"
+      class="police-beian"
+      target="_blank"
+    >
+      <span class="police-beian-sep">&nbsp;|&nbsp;</span>
+      
+        <img src="/img/police_beian.png" srcset="/img/loading.gif" />
+      
+      <span>辽ICP备20002476号-1</span>
+    </a>
+  
+
+
+
+    <!-- cnzz Analytics icon -->
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
+  
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "SpringAOP-面向切面编程&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
