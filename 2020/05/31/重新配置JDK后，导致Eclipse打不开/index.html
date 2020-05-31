@@ -130,7 +130,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    178 字
+                    182 字
                   </span>&nbsp;
                 
 
@@ -171,16 +171,13 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h2 id="Linux运行hadoop提示无权限"><a href="#Linux运行hadoop提示无权限" class="headerlink" title="Linux运行hadoop提示无权限"></a><p align="center">Linux运行hadoop提示无权限</p></h2><p align="right">记录人：霖雨成思
-我在配置Windows版hadoop时将jdk重新安装到了没有中文和空格的路径中，重新配置环境变量后导致eclipse打不开了，我找到了eclipse安装路径，打开了eclipse.ini，加上了
-```
--vm
-C:\file\jdk\jdk8\bin\javaw.exe(这个是我的jdk\bin路径)
-```
-这段代码，就能正常打开了
-修改之后eclipse.ini是这样的
-```
--startup
+            <h2 id="重新配置JDK后，导致Eclipse打不开"><a href="#重新配置JDK后，导致Eclipse打不开" class="headerlink" title="重新配置JDK后，导致Eclipse打不开"></a><p align="center">重新配置JDK后，导致Eclipse打不开</p></h2><p align="right">记录人：霖雨成思
+
+</p><p>我在配置Windows版hadoop时将jdk重新安装到了没有中文和空格的路径中，重新配置环境变量后导致eclipse打不开了，我找到了eclipse安装路径，打开了eclipse.ini，加上了</p>
+<pre><code class="ini">-vm
+C:\file\jdk\jdk8\bin\javaw.exe(这个是我的jdk\bin路径)</code></pre>
+<p>这段代码，就能正常打开了<br>修改之后eclipse.ini是这样的</p>
+<pre><code class="ini">-startup
 plugins/org.eclipse.equinox.launcher_1.3.201.v20161025-1711.jar
 --launcher.library
 plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.401.v20161122-1740
@@ -201,8 +198,8 @@ C:\file\jdk\jdk8\bin\javaw.exe
 -XX:+UseStringDeduplication
 -Dosgi.requiredJavaVersion=1.8
 -Xms512m
--Xmx1024m
-```</p>
+-Xmx1024m</code></pre>
+
             <hr>
           </div>
           <br>

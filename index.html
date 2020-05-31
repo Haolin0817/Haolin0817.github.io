@@ -154,15 +154,12 @@
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">Linux运行hadoop提示无权限记录人：霖雨成思
+          <div class="index-text mb-1">重新配置JDK后，导致Eclipse打不开记录人：霖雨成思
+
 我在配置Windows版hadoop时将jdk重新安装到了没有中文和空格的路径中，重新配置环境变量后导致eclipse打不开了，我找到了eclipse安装路径，打开了eclipse.ini，加上了
-```
 -vm
 C:\file\jdk\jdk8\bin\javaw.exe(这个是我的jdk\bin路径)
-```
-这段代码，就能正常打开了
-修改之后eclipse.ini是这样的
-```
+这段代码，就能正常打开了修改之后eclipse.ini是这样的
 -startup
 plugins/org.eclipse.equinox.launcher_1.3.201.v20161025-1711.jar
 --launcher.library
@@ -172,7 +169,8 @@ org.eclipse.epp.package.jee.product
 --launcher.defaultAction
 openFile
 -showsplash
-org.eclipse.plat</div>
+org.eclipse.platform
+--la</div>
         </div>
       </a>
 
