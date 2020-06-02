@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>VMware虚拟机提示：以独占方式锁定此配置文件失败</title>
+    <link href="/2020/06/02/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%8F%90%E7%A4%BA%EF%BC%9A%E4%BB%A5%E7%8B%AC%E5%8D%A0%E6%96%B9%E5%BC%8F%E9%94%81%E5%AE%9A%E6%AD%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5/"/>
+    <url>/2020/06/02/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%8F%90%E7%A4%BA%EF%BC%9A%E4%BB%A5%E7%8B%AC%E5%8D%A0%E6%96%B9%E5%BC%8F%E9%94%81%E5%AE%9A%E6%AD%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5/</url>
+    
+    <content type="html"><![CDATA[<h2 id="VMware虚拟机提示：以独占方式锁定此配置文件失败"><a href="#VMware虚拟机提示：以独占方式锁定此配置文件失败" class="headerlink" title="VMware虚拟机提示：以独占方式锁定此配置文件失败"></a><p align="center">VMware虚拟机提示：以独占方式锁定此配置文件失败</p></h2><p align="right">记录人：霖雨成思VM异常关闭后再次启动，提示“以独占方式锁定此配置文件失败”> 通过禁用启动项的方式结束旧的进程占用<ul><li>按“win + R”组合键，进入“运行”.</li><li>写入“msconfig”进入系统配置</li><li>选中服务，勾选左下角“隐藏所有Microsoft服务”，再点击“全部禁用”，点击应用。</li><li>再打开“服务“边上的“启动”选项，打开“点击任务管理器”</li><li>找到VMware Tray Process，禁用</li><li>重启电脑后，再按照如上方式启动被禁用的服务，VMware就可以正常启动了</li></ul><blockquote><p>参考链接:<a href="https://www.cnblogs.com/Komorebi-john/p/11381053.html" target="_blank" rel="noopener">https://www.cnblogs.com/Komorebi-john/p/11381053.html</a></p></blockquote></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>重新配置JDK后，导致Eclipse打不开</title>
     <link href="/2020/05/31/%E9%87%8D%E6%96%B0%E9%85%8D%E7%BD%AEJDK%E5%90%8E%EF%BC%8C%E5%AF%BC%E8%87%B4Eclipse%E6%89%93%E4%B8%8D%E5%BC%80/"/>
     <url>/2020/05/31/%E9%87%8D%E6%96%B0%E9%85%8D%E7%BD%AEJDK%E5%90%8E%EF%BC%8C%E5%AF%BC%E8%87%B4Eclipse%E6%89%93%E4%B8%8D%E5%BC%80/</url>

@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="霖雨成思">
   <meta name="keywords" content="">
-  <title>归档 ~ 霖雨成思的博客</title>
+  <title>VMware虚拟机提示：以独占方式锁定此配置文件失败 ~ 霖雨成思的博客</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -106,7 +106,7 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="view intro-2" id="background" false
          style="background: url('/img/default.png')no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -116,6 +116,41 @@
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 六月 2日 2020, 10:46 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    187 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -127,47 +162,67 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 18 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/24/Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%91%BD%E4%BB%A4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux命令——系统信息类命令</span>
-      <span style="float: right;">03-24</span>
-    </a>
-  
-    
-    <a href="/2020/03/19/Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB%E5%91%BD%E4%BB%A4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux命令——文件目录类命令</span>
-      <span style="float: right;">03-19</span>
-    </a>
-  
-    
-    <a href="/2020/03/17/Linux%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux命令——基础</span>
-      <span style="float: right;">03-17</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="VMware虚拟机提示：以独占方式锁定此配置文件失败"><a href="#VMware虚拟机提示：以独占方式锁定此配置文件失败" class="headerlink" title="VMware虚拟机提示：以独占方式锁定此配置文件失败"></a><p align="center">VMware虚拟机提示：以独占方式锁定此配置文件失败</p></h2><p align="right">记录人：霖雨成思
+VM异常关闭后再次启动，提示“以独占方式锁定此配置文件失败”
+> 通过禁用启动项的方式结束旧的进程占用
 
-              </div>
-            </div>
+<ul>
+<li>按“win + R”组合键，进入“运行”.</li>
+<li>写入“msconfig”进入系统配置</li>
+<li>选中服务，勾选左下角“隐藏所有Microsoft服务”，再点击“全部禁用”，点击应用。</li>
+<li>再打开“服务“边上的“启动”选项，打开“点击任务管理器”</li>
+<li>找到VMware Tray Process，禁用</li>
+<li>重启电脑后，再按照如上方式启动被禁用的服务，VMware就可以正常启动了</li>
+</ul>
+<blockquote>
+<p>参考链接:<a href="https://www.cnblogs.com/Komorebi-john/p/11381053.html" target="_blank" rel="noopener">https://www.cnblogs.com/Komorebi-john/p/11381053.html</a></p>
+</blockquote>
+</p>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -264,6 +319,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smoothscroll/SmoothScroll.min.js" ></script>
@@ -304,7 +364,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "VMware虚拟机提示：以独占方式锁定此配置文件失败&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
